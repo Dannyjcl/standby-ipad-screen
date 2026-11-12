@@ -44,6 +44,7 @@ export const DEFAULTS = {
 
     // Night mode: 'auto' follows the schedule, or 'on' / 'off'
     night: 'auto',
+    nightOverride: null,        // set by the moon button: { on, until }
     nightFrom: '22:00',
     nightTo: '07:00',
 
