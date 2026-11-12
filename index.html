@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>StandBy</title>
+
+    <!-- Home-screen web app (Add to Home Screen in Safari) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="StandBy">
+    <meta name="theme-color" content="#050506">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icons/icon-180.png">
+    <link rel="icon" href="icons/icon-192.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="board" id="board">
+
+    <!-- Left: time -->
+    <section class="pane time-pane" aria-label="Clock and countdowns">
+        <div class="clock" id="clock" aria-live="off">
+            <span class="clock-hm" id="clock-hm">--:--</span><span class="clock-side"><span class="clock-s" id="clock-s">--</span><span class="clock-ampm" id="clock-ampm"></span></span>
+        </div>
+        <div class="date" id="date"></div>
+
+        <div class="countdowns">
+            <div class="eyebrow">Coming up</div>
+            <ol class="cd-list" id="cd-list"></ol>
+        </div>
+    </section>
+
+    <!-- Right top: Bitcoin -->
+    <section class="pane btc-pane" aria-label="Bitcoin">
+        <header class="pane-hd">
+            <div>
+                <div class="eyebrow"><span class="dot" id="btc-dot" title="Live feed status"></span>Bitcoin · BTC-USD</div>
+                <div class="btc-price num" id="btc-price">—</div>
+                <div class="btc-change num" id="btc-change"></div>
+            </div>
+            <div class="seg" role="group" aria-label="Chart range" id="btc-range">
+                <button type="button" data-range="1D" class="on">1D</button>
+                <button type="button" data-range="1W">1W</button>
+                <button type="button" data-range="1M">1M</button>
+            </div>
+        </header>
+        <div class="chart" id="btc-chart" role="img" aria-label="Bitcoin price chart"></div>
+        <div class="chart-msg" id="btc-msg" hidden></div>
+    </section>
+
+    <!-- Right bottom: MSTR premium -->
+    <section class="pane mstr-pane" aria-label="MSTR premium to bitcoin">
+        <div class="eyebrow">MSTR · premium to BTC</div>
+        <div class="mstr-row">
+            <div>
+                <div class="mnav num" id="mnav">—</div>
+                <div class="mnav-sub" id="mnav-sub">mNAV</div>
+            </div>
+            <dl class="mstr-stats" id="mstr-stats"></dl>
+        </div>
+        <div class="mstr-msg" id="mstr-msg" hidden></div>
+    </section>
+
+    <!-- Bottom: tickers -->
+    <section class="ticker" aria-label="Stock prices">
+        <div class="ticker-track" id="ticker-track"></div>
+    </section>
+
+    <!-- Corner controls -->
+    <nav class="controls" aria-label="Controls">
+        <button type="button" class="ctl" id="btn-night" aria-pressed="false" aria-label="Night mode" title="Night mode">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+        <button type="button" class="ctl" id="btn-settings" aria-label="Settings" title="Settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+        </button>
+    </nav>
+</main>
+
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+<dialog class="settings" id="settings"></dialog>
+
+<script src="vendor/lightweight-charts.standalone.production.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
