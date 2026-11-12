@@ -177,6 +177,8 @@ button { cursor: pointer; }
 
 .ticker {
     overflow: hidden; border-top: 1px solid var(--line); padding-top: 10px;
+}
+.ticker:has(.scrolling) {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
             mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
